@@ -1,0 +1,54 @@
+from turtle import Turtle, Screen
+import random
+
+my_screen = Screen()
+my_screen.setup(width=400,height=700)
+my_screen.bgcolor("magneta")
+soru = my_screen.textinput(title="Tahminini yap!!",prompt="Sence hangi renk kazanacak?")
+renkler = ["red","blue","black","yellow","green","purple"]
+yaris = False
+x_pozisyon = [-150,-90,-30,30,90,150]
+yavaslar = []
+
+def bitis_cizgisi():
+    cizgi = Turtle()
+    cizgi.hideturtle()
+    cizgi.speed("fastest")
+    cizgi.pensize(20)
+    
+    cizgi.penup()
+    cizgi.goto(-200,220)
+    cizgi.pendown()
+    
+    cizgi.forward(400)
+
+
+for t in range(0,6):
+    yavas = Turtle(shape="turtle")
+    yavas.color(renkler[t])
+    yavas.setheading(90)
+    yavas.penup()
+    yavas.goto(x_pozisyon[t],-230)
+    yavaslar.append(yavas)
+    
+
+if soru:
+    yaris = True
+    
+    
+    
+    
+bitis_cizgisi()   
+while yaris:
+    for yavas in yavaslar:
+        if yavas.ycor() > 200:
+            yaris = False
+            kazanan = yavas.pencolor()
+            if kazanan == soru:
+                print("Kazandın.")
+            else:
+                print("Kaybettin.")
+            
+            
+        hiz = random.randint(0,10)
+        yavas.forward(hiz)
